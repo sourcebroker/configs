@@ -1,0 +1,23 @@
+{
+	"name": "sourcebroker/config-typo3",
+	"description": "Read configs based on TYPO3_CONTEXT settings.",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "SourceBroker Team",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": "^7.4 || ~8.0",
+		"typo3/cms-core": "^10.0.0 || ^11.0.0"
+	},
+	"version": "1.0.0",
+	"suggest": {},
+	"conflict": {},
+	"autoload": {
+		"psr-4": {
+			"SourceBroker\\ConfigTypo3\\": "src/"
+		}
+	}
+}
