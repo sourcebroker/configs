@@ -13,13 +13,13 @@ TYPO3 settings based on different context: instance, feature activation, system 
 Installation
 ------------
 
-1) Install using composer:
+1. Install using composer:
 
    ::
 
     composer require sourcebroker/configs
 
-2) Add following code in ``typo3conf/AdditionalConfiguration.php``
+2. Add following code in ``typo3conf/AdditionalConfiguration.php``
 
    ::
 
@@ -31,25 +31,25 @@ Installation
         ->appendContextToSiteName()
         ->includeContextDependentConfigurationFiles();
 
-3) Create folder ``context`` in folder ``config``.
+3. Create folder ``context`` in folder ``config``.
 
-4) In folder ``context`` create folders that starts with 1\_*, 2\_*, 3\_*, 4\_*., example ``1_verbosity``, ``2_mode``,
+4. In folder ``context`` create folders that starts with 1\_*, 2\_*, 3\_*, 4\_*., example ``1_verbosity``, ``2_mode``,
    ``3_instance``
 
-6) Inside those folders create php files with the names you will use in TYPO3_CONTEXT.
+5. Inside those folders create php files with the names you will use in TYPO3_CONTEXT.
 
 Example
 -------
 
-1) Copy example configs from ``Resources/Private/Examples/Example1/context`` to folder ``config/context``
+1. Copy example configs from ``Resources/Private/Examples/Example1/context`` to folder ``config/context``
 
-2) You can change the folder names ``1_verbosity``, ``2_mode``, ``3_instance`` to whatever you want but
-    do not change the ``number_underscore`` pair. Numbers decide about what part of configs to read from the
-    folders based on TYPO3_CONTEXT parts. Part after number and underscore play no role.
+2. You can change the folder names ``1_verbosity``, ``2_mode``, ``3_instance`` to whatever you want but
+   do not change the ``number_underscore`` pair. Numbers decide about what part of configs to read from the
+   folders based on TYPO3_CONTEXT parts. Part after number and underscore play no role.
 
-3) Change TYPO3_CONTEXT to ``Development/Staging/Beta``then file ``Development.php`` will be included from folder
-``1_verbosity``, file ``Staging.php`` will be included from folder ``2_mode`` and file ``Beta.php`` will be included
-from folder ``3_instance``.
+3. Change TYPO3_CONTEXT to ``Development/Staging/Beta`` then file ``Development.php`` will be included from folder
+   ``1_verbosity``, file ``Staging.php`` will be included from folder ``2_mode`` and file ``Beta.php`` will be included
+   from folder ``3_instance``.
 
 You can have as many folders with numbers as you like, for example you can set TYPO3_CONTEXT to
 ``Production//Live/Feature1`` then corresponding files will be included from folders 1\_*, 2\_*, 3\_*, 4\_*.
