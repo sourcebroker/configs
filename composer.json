@@ -1,10 +1,10 @@
 {
-	"name": "sourcebroker/config-typo3",
+	"name": "sourcebroker/configs",
 	"description": "Read configs based on TYPO3_CONTEXT settings.",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
-			"name": "SourceBroker Team",
+			"name": "Inscript Team",
 			"role": "Developer"
 		}
 	],
@@ -16,7 +16,7 @@
 	"conflict": {},
 	"autoload": {
 		"psr-4": {
-			"SourceBroker\\ConfigTypo3\\": "src/"
+			"SourceBroker\\Configs\\": "Classes/"
 		}
 	},
 	"config": {

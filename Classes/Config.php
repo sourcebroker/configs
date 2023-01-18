@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace SourceBroker\ConfigTypo3;
+namespace SourceBroker\Configs;
 
-use Exception;
-use RuntimeException;
 use TYPO3\CMS\Core\Core\ApplicationContext;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Information\Typo3Version;
@@ -76,7 +74,7 @@ class Config
                 if (!$requireFile) {
                     throw new RuntimeException('File: "'.$layerToFolderMapping[$key + 1].'/'.$contextPartComma.'.php" does not exists.');
                 }
-                if (!str_starts_with($requireFile, self::$instance->configUserPath)) {
+                if (!\SourceBroker\Configs\str_starts_with($requireFile, self::$instance->configUserPath)) {
                     throw new RuntimeException('File "'.$requireFile.'" is not inside folder: "'.self::$instance->configUserPath.'"');
                 }
                 require_once $layerToFolderMapping[$key + 1].'/'.$contextPartComma.'.php';

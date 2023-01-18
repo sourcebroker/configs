@@ -1,4 +1,4 @@
-name: config-typo3
+name: configs
 type: php
 docroot: ""
 php_version: "7.4"
