@@ -32,5 +32,8 @@
 			"app-dir": ".build",
 			"web-dir": ".build/public"
 		}
+	},
+	"require-dev": {
+		"typo3/coding-standards": "^0.6.1"
 	}
 }
