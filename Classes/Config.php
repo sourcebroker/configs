@@ -22,7 +22,7 @@ class Config
 
     /**
      * @param string $contextFilesPath
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(string $contextFilesPath = 'context')
     {
@@ -35,10 +35,10 @@ class Config
         $contextStringParts = explode('/', (string)$this->context);
         foreach ($contextStringParts as $contextStringPart) {
             if ($contextStringPart !== '' && !preg_match('/^[a-zA-Z0-9_,-]+$/', $contextStringPart)) {
-                throw new RuntimeException('TYPO3_CONTEXT parts can consists only from chars a-z, A-Z, 0-9, _, - but one of your part is: "'.$contextStringPart.'" ');
+                throw new \RuntimeException('TYPO3_CONTEXT parts can consists only from chars a-z, A-Z, 0-9, _, - but one of your part is: "' . $contextStringPart . '" ');
             }
         }
-        $this->configUserPath = realpath($this->configPath.'/'.rtrim($contextFilesPath, '/'));
+        $this->configUserPath = realpath($this->configPath . '/' . rtrim($contextFilesPath, '/'));
     }
 
     public static function initialize(): self
@@ -51,7 +51,7 @@ class Config
     public static function includeContextDependentConfigurationFiles(): self
     {
         $layerToFolderMapping = [];
-        $layers = glob(self::$instance->configUserPath.'/*');
+        $layers = glob(self::$instance->configUserPath . '/*');
         foreach ($layers as $layer) {
             $layerParts = explode('_', basename($layer));
             $layerToFolderMapping[$layerParts[0] ?? null] = $layer;
@@ -65,19 +65,19 @@ class Config
                     continue;
                 }
                 if (!isset($layerToFolderMapping[$key + 1])) {
-                    throw new RuntimeException('For the '.($key + 1).'th part ("'.$contextPart.'") of TYPO3_CONTEXT ("'.
-                        (string)self::$instance->context.'" there is no corresponding folder. '.
-                        'The expected folder should be located inside folder: '.self::$instance->configUserPath.'" and start with "'.($key + 1).'_",
-                        example: "'.self::$instance->configUserPath.'/'.($key + 1).'_something"');
+                    throw new \RuntimeException('For the ' . ($key + 1) . 'th part ("' . $contextPart . '") of TYPO3_CONTEXT ("' .
+                        (string)self::$instance->context . '" there is no corresponding folder. ' .
+                        'The expected folder should be located inside folder: ' . self::$instance->configUserPath . '" and start with "' . ($key + 1) . '_",
+                        example: "' . self::$instance->configUserPath . '/' . ($key + 1) . '_something"');
                 }
-                $requireFile = realpath($layerToFolderMapping[$key + 1].'/'.$contextPartComma.'.php');
+                $requireFile = realpath($layerToFolderMapping[$key + 1] . '/' . $contextPartComma . '.php');
                 if (!$requireFile) {
-                    throw new RuntimeException('File: "'.$layerToFolderMapping[$key + 1].'/'.$contextPartComma.'.php" does not exists.');
+                    throw new \RuntimeException('File: "' . $layerToFolderMapping[$key + 1] . '/' . $contextPartComma . '.php" does not exists.');
                 }
-                if (!\SourceBroker\Configs\str_starts_with($requireFile, self::$instance->configUserPath)) {
-                    throw new RuntimeException('File "'.$requireFile.'" is not inside folder: "'.self::$instance->configUserPath.'"');
+                if (!str_starts_with($requireFile, self::$instance->configUserPath)) {
+                    throw new \RuntimeException('File "' . $requireFile . '" is not inside folder: "' . self::$instance->configUserPath . '"');
                 }
-                require_once $layerToFolderMapping[$key + 1].'/'.$contextPartComma.'.php';
+                require_once $layerToFolderMapping[$key + 1] . '/' . $contextPartComma . '.php';
             }
         }
         self::loadConfigurationFromEnvironment();
@@ -152,13 +152,13 @@ class Config
     {
         if ($short) {
             $context = implode('/', array_map(
-                static fn($contextPart) => $contextPart[0] ?? '',
+                static fn ($contextPart) => $contextPart[0] ?? '',
                 (array)explode('/', (string)self::$instance->context)
             ));
         } else {
             $context = (string)self::$instance->context;
         }
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] .= '('.$context.')';
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] .= '(' . $context . ')';
 
         return self::$instance;
     }
