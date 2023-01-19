@@ -47,15 +47,17 @@ Example
    do not change the ``number_underscore`` pair. Numbers decide about what part of configs to read from the
    folders based on TYPO3_CONTEXT parts. Part after number and underscore play no role.
 
-3. Change TYPO3_CONTEXT to ``Development/Staging/Beta`` then file ``Development.php`` will be included from folder
+3. If TYPO3_CONTEXT will be set to ``Development/Staging/Beta`` then file ``Development.php`` will be included from folder
    ``1_verbosity``, file ``Staging.php`` will be included from folder ``2_mode`` and file ``Beta.php`` will be included
    from folder ``3_instance``.
 
-You can have as many folders with numbers as you like, for example you can set TYPO3_CONTEXT to
-``Production//Live/Feature1`` then corresponding files will be included from folders 1\_*, 2\_*, 3\_*, 4\_*.
+You can have as many folders with numbers as you like. You can also read more files from one folder when you separate string with comma.
+For example you can set TYPO3_CONTEXT to ``Production//Live/Feature1,Feature2`` then file ``Production.php`` will be included from folder
+``1_verbosity``, file ``Live.php`` will be included from folder ``3_mode`` and file ``Feature1.php``, ``Feature2.php`` will be included
+from folder ``4_whatever``.
 
 If you install package ``helhum/dotenv-connector`` then you additionally have possibility to modify
-``$GLOBALS['TYPO3_CONF_VARS']`` array by adding entries in ``.env`` file with convention:
+``$GLOBALS['TYPO3_CONF_VARS']`` array by adding entries in ``.env`` file with following convention:
 ``TYPO3__[first_level_array]__[second_level_array]__[third_level_array] = "value"``
 
 This allows you to provide database values per instance by putting following lines to .env files of each instance.
@@ -80,8 +82,8 @@ It is up to you to decide what values to put inside ``.env`` (which is out of gi
 to ``config/context/3_instance/Live.php``, ``config/context/3_instance/Beta.php`` etc which are inside git.
 
 Lot of values stored in ``.env`` file means that it is harder to recreate the same TYPO3 state on local development system.
-If those settings are in git then you can just switch TYPO3_CONTEXT from local ``TYPO3_CONTEXT=Development/Staging/Beta``
-to beta ``TYPO3_CONTEXT=Development/Staging/Beta`` on local development system.
+If those settings are in git then you can just switch TYPO3_CONTEXT from local ``TYPO3_CONTEXT=Development/Staging/Local``
+to beta ``TYPO3_CONTEXT=Production/Staging/Beta`` on local development system.
 
 Database access data are good candidate to be put inside .env.
 
