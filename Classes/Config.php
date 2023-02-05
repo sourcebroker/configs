@@ -138,6 +138,7 @@ class Config
                     'trustedHostsPattern' => '.*.*',
                     'fileCreateMask' => '0666',
                     'folderCreateMask' => '2777',
+                    'encryptionKey' => '034f32a5f27aaf8d7e4b437c6d10d5132b3b8bd451f507a8fc978ab2c9a7e24498a05137e80b917138ab0446bd6dabc4',
                 ],
             ]
         );
