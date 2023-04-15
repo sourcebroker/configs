@@ -9,8 +9,8 @@
 		}
 	],
 	"require": {
-		"php": "^7.4 || ~8.0",
-		"typo3/cms-core": "^10.0.0 || ^11.0.0"
+		"php": "^7.4 || ^8.0",
+		"typo3/cms-core": "^10 || ^11 || ^12"
 	},
 	"suggest": {},
 	"conflict": {},
