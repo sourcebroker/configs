@@ -87,6 +87,12 @@ to beta ``TYPO3_CONTEXT=Production/Staging/Beta`` on local development system.
 
 Database access data are good candidate to be put inside .env.
 
+Uncache exceptions
+------------------
+
+You can use following code to disable uncaching on development for some cache configurations:
+
+``$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['my_cache']['tx_configs']['uncache'] = true;``
 
 Inspiration
 -----------
