@@ -92,7 +92,7 @@ Uncache exceptions
 
 You can use following code to disable uncaching on development for some cache configurations:
 
-``$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['my_cache']['tx_configs']['uncache'] = true;``
+``$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['configs']['caching']['cacheConfigurations']['my_cache']['uncache'] = false``
 
 Inspiration
 -----------

@@ -23,7 +23,8 @@ class Uncache implements MiddlewareInterface
     {
         if (Environment::getContext()->isDevelopment()) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'] as $configurationName => $configuration) {
-                if ($configuration['tx_config']['uncache'] === false) {
+                if (isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['configs']['caching']['cacheConfigurations'][$configurationName]['uncache'])
+                    && $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['configs']['caching']['cacheConfigurations'][$configurationName]['uncache'] === false) {
                     continue;
                 }
                 if (isset($configuration['backend']) && is_a(
