@@ -208,10 +208,10 @@ class Config
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['belogErrorReporting'] = E_ALL;
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['exceptionalErrors'] = E_ALL;
         self::enableDeprecationLogging();
-        // Log warnings to files
         $GLOBALS['TYPO3_CONF_VARS']['LOG']['writerConfiguration'][LogLevel::WARNING] = [
             FileWriter::class => ['disabled' => false],
         ];
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['configs']['caching']['cacheConfigurations']['t3api']['uncache'] = false;
 
         return self::$instance;
     }
