@@ -38,7 +38,11 @@ class Config
                 throw new \RuntimeException('TYPO3_CONTEXT parts can consists only from chars a-z, A-Z, 0-9, _, - but one of your part is: "' . $contextStringPart . '" ');
             }
         }
-        $this->configUserPath = realpath($this->configPath . '/' . rtrim($contextFilesPath, '/'));
+        $resolvedConfigUserPath = realpath($this->configPath . '/' . rtrim($contextFilesPath, '/'));
+        if ($resolvedConfigUserPath === false) {
+            throw new \RuntimeException('Config context path does not exist: "' . $this->configPath . '/' . rtrim($contextFilesPath, '/') . '"');
+        }
+        $this->configUserPath = $resolvedConfigUserPath;
     }
 
     public static function initialize(): self
